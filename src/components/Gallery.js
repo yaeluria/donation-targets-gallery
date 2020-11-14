@@ -1,37 +1,21 @@
-import React from 'react';
-import { useQuery, gql } from '@apollo/client';
+import React from "react";
+import Card from "./Card";
+import Box from "@material-ui/core/Box";
 
-const DONATION_TARGETS = gql`
-  query {
-    getDonationTargets {
-      donationTargets {
-        id
-        name
-        descriptionContent
-        category {
-          name
-        }
-      }
-      lastPage
-      nextPage
-      totalCount
-    }
-  }
-`;
+export default function Gallery({ data }) {
+  React.useEffect(() => {
+    console.log("data", data);
+  });
 
-export default function Gallery(){
-    const { loading, error, data } = useQuery(DONATION_TARGETS);
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error :(</p>;
-    return(
-        data.getDonationTargets.donationTargets.map(({ name, id }) => {
-            return(
-              <div key={id}>
-              <p>
-                {id}: {name}
-              </p>
-            </div>
-            )
-          })
-    )
+  return (
+    <Box display="flex" flexWrap="wrap" p={10}>
+      {data?.getDonationTargets?.donationTargets?.map((target) => {
+        return (
+          <Box key={target.id} p={3}>
+            <Card data={target} />
+          </Box>
+        );
+      })}
+    </Box>
+  );
 }
