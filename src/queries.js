@@ -1,4 +1,4 @@
-import {  gql } from "@apollo/client";
+import { gql } from "@apollo/client";
 
 export const DONATION_TARGETS = gql`
   query getTargets($page: Int = 1) {
@@ -6,6 +6,10 @@ export const DONATION_TARGETS = gql`
       donationTargets {
         id
         name
+        charityOrganization{
+          name
+          avatar
+        }
         descriptionContent
         mediaObject {
           thumbnail
