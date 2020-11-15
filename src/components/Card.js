@@ -41,7 +41,7 @@ export default function MediaCard({ data }) {
   
   const previewString = (content, maxNum) => {
    return content?.length > maxNum
-      ? content.substring(0, maxNum) + " . . ."
+      ? content.substring(0, maxNum) + "..."
       : content;
   }
     
