@@ -3,12 +3,12 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme)=>({
     amount: {
         fontWeight: 800,
-        fontSize: '18px',
+        fontSize: theme.spacing(2),
     },
-})
+}));
 export default function Statistics(props) {
     const { totalMatchedAmount, donorCount } = props.data;
     const classes = useStyles();
@@ -32,7 +32,7 @@ export default function Statistics(props) {
             raised
           </Typography>
         )}
-        {donorCount > 0 && (
+        {donorCount > 1 && (
           <Typography variant="body2" component="span">
             <span className={classes.amount}>
               {donorCount}

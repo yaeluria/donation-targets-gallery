@@ -12,7 +12,7 @@ import GradeOutlinedIcon from "@material-ui/icons/GradeOutlined";
 import Statistics from "./Statistics";
 import { textBlue, MAX_CHAR_DESC, MAX_CHAR_NAME } from "../constants";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme)=>({
   root: {
     width: 300,
     color: textBlue
@@ -24,11 +24,11 @@ const useStyles = makeStyles({
     height: 200,
   },
   avatar: {
-    marginRight: 8,
+    marginRight: theme.spacing(1),
     height: 20,
     width: 20
   }
-});
+}));
 export default function MediaCard({ data }) {
   const classes = useStyles();
   const {
