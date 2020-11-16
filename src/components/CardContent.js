@@ -24,7 +24,6 @@ export default function CardContent(props) {
     name,
     descriptionContent,
     charityOrganization,
-    id,
     donationTargetStatistic,
   } = props;
 

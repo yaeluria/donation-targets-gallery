@@ -59,7 +59,6 @@ export default function Card({ data }) {
         title="Organization Icon"
       />
       <CardContent
-        id={id}
         name={name}
         descriptionContent={descriptionContent}
         charityOrganization={charityOrganization}
