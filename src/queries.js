@@ -6,13 +6,17 @@ export const DONATION_TARGETS = gql`
       donationTargets {
         id
         name
-        charityOrganization{
+        charityOrganization {
           name
           avatar
         }
         descriptionContent
         mediaObject {
           thumbnail
+        }
+        donationTargetStatistic {
+          donorCount
+          totalMatchedAmount
         }
       }
       lastPage

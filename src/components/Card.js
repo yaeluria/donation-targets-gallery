@@ -9,11 +9,12 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import GradeIcon from "@material-ui/icons/Grade";
 import GradeOutlinedIcon from "@material-ui/icons/GradeOutlined";
+import Statistics from "./Statistics";
 
 const useStyles = makeStyles({
   root: {
     width: 300,
-    height: 400,
+    color: "#0d1c56"
   },
   media: {
     height: 200,
@@ -35,6 +36,7 @@ export default function MediaCard({ data }) {
     charityOrganization,
     mediaObject,
     id,
+    donationTargetStatistic
   } = data;
   const MAX_CHAR_DESC = 50;
   const MAX_CHAR_NAME = 30;
@@ -74,18 +76,28 @@ export default function MediaCard({ data }) {
         title="Organization Icon"
       />
       <CardContent className={classes.content}>
-      <Typography gutterBottom variant="h6" component="h2">
-          {id} :{previewString(name, MAX_CHAR_NAME)}
-        </Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {previewString(descriptionContent, MAX_CHAR_DESC)}
-        </Typography>
-        <Box display="flex" py={2}>
-          <img className={classes.avatar} src={charityOrganization.avatar} onError={handleImageError} alt={charityOrganization.name} />
-          <Typography variant="body2" color="textSecondary" component="p">
-          <b>by</b> {previewString(charityOrganization.name, MAX_CHAR_NAME)}
+          <Typography gutterBottom variant="h6" component="h2">
+            {id} :{previewString(name, MAX_CHAR_NAME)}
+          </Typography>
+          <Typography variant="body2"  component="p">
+            {previewString(descriptionContent, MAX_CHAR_DESC)}
+          </Typography>
+          {
+            charityOrganization.name &&
+            <Box display="flex" py={2}>
+          <img
+            className={classes.avatar}
+            src={charityOrganization.avatar}
+            onError={handleImageError}
+            alt={charityOrganization.name}
+          />
+          <Typography variant="body2"  component="p">
+            <b>by</b> {previewString(charityOrganization.name, MAX_CHAR_NAME)}
           </Typography>
         </Box>
+          }
+        
+        <Statistics data={donationTargetStatistic} />
       </CardContent>
       <CardActions>
         <IconButton
