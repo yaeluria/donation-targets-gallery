@@ -8,16 +8,17 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import AppBar from './AppBar';
 import OrderSelect from "./OrderSelect";
 import DataContext from "../data-context";
+import {INITIAL_PAGE_NUM} from "../constants";
 
 export default function Container() {
   const {filter} = useContext(DataContext);
   
   const orderBy = filter?.orderBy || "approved_at_DESC"
     
-  const INITIAL_PAGE = 1;
+  
   const { loading, error, data, fetchMore } = useQuery(DONATION_TARGETS, {
     variables: {
-      page: INITIAL_PAGE,
+      page: INITIAL_PAGE_NUM,
       orderBy: orderBy
     }
   });

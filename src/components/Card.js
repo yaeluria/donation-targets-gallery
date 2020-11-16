@@ -10,11 +10,12 @@ import IconButton from "@material-ui/core/IconButton";
 import GradeIcon from "@material-ui/icons/Grade";
 import GradeOutlinedIcon from "@material-ui/icons/GradeOutlined";
 import Statistics from "./Statistics";
+import { textBlue, MAX_CHAR_DESC, MAX_CHAR_NAME } from "../constants";
 
 const useStyles = makeStyles({
   root: {
     width: 300,
-    color: "#0d1c56"
+    color: textBlue
   },
   media: {
     height: 200,
@@ -38,8 +39,6 @@ export default function MediaCard({ data }) {
     id,
     donationTargetStatistic
   } = data;
-  const MAX_CHAR_DESC = 50;
-  const MAX_CHAR_NAME = 30;
   
   const previewString = (content, maxNum) => {
    return content?.length > maxNum
