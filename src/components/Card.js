@@ -1,21 +1,16 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import Box from "@material-ui/core/Box";
-import CardContent from "@material-ui/core/CardContent";
+import MuiCard from "@material-ui/core/Card";
+import CardContent from './CardContent';
 import CardMedia from "@material-ui/core/CardMedia";
 import CardActions from "@material-ui/core/CardActions";
-import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import GradeIcon from "@material-ui/icons/Grade";
 import GradeOutlinedIcon from "@material-ui/icons/GradeOutlined";
-import Statistics from "./Statistics";
-import { textBlue, MAX_CHAR_DESC, MAX_CHAR_NAME } from "../constants";
 
 const useStyles = makeStyles((theme)=>({
   root: {
     width: 300,
-    color: textBlue
   },
   media: {
     height: 200,
@@ -29,7 +24,7 @@ const useStyles = makeStyles((theme)=>({
     width: 20
   }
 }));
-export default function MediaCard({ data }) {
+export default function Card({ data }) {
   const classes = useStyles();
   const {
     name,
@@ -40,13 +35,6 @@ export default function MediaCard({ data }) {
     donationTargetStatistic
   } = data;
   
-  const previewString = (content, maxNum) => {
-   return content?.length > maxNum
-      ? content.substring(0, maxNum) + "..."
-      : content;
-  }
-    
-
   const [newFavorite, setNewFavorite] = useState(false);
   const isInFavorites = (id) => localStorage.getItem(id);
   const addToFavorites = (id) => {
@@ -58,14 +46,10 @@ export default function MediaCard({ data }) {
     //trigger re-render
     setNewFavorite(!newFavorite);
   };
-  const handleImageError = e => {
-    e.target.src =
-    "https://jgive-deploy-devcors-6rtudh0rg.herokuapp.com/defaults/charity_organizations/avatars/missing.jpg"
 
-  }
 
   return (
-    <Card className={classes.root}>
+    <MuiCard className={classes.root}>
       <CardMedia
         className={classes.media}
         image={
@@ -74,30 +58,13 @@ export default function MediaCard({ data }) {
         }
         title="Organization Icon"
       />
-      <CardContent className={classes.content}>
-          <Typography gutterBottom variant="h6" component="h2">
-            {id} :{previewString(name, MAX_CHAR_NAME)}
-          </Typography>
-          <Typography variant="body2"  component="p">
-            {previewString(descriptionContent, MAX_CHAR_DESC)}
-          </Typography>
-          {
-            charityOrganization.name &&
-            <Box display="flex" py={2}>
-          <img
-            className={classes.avatar}
-            src={charityOrganization.avatar}
-            onError={handleImageError}
-            alt={charityOrganization.name}
-          />
-          <Typography variant="body2"  component="p">
-            <b>by</b> {previewString(charityOrganization.name, MAX_CHAR_NAME)}
-          </Typography>
-        </Box>
-          }
-        
-        <Statistics data={donationTargetStatistic} />
-      </CardContent>
+      <CardContent
+        id={id}
+        name={name}
+        descriptionContent={descriptionContent}
+        charityOrganization={charityOrganization}
+        donationTargetStatistic={donationTargetStatistic}
+      />
       <CardActions>
         <IconButton
           aria-label={
@@ -108,6 +75,6 @@ export default function MediaCard({ data }) {
           {isInFavorites(id) ? <GradeIcon /> : <GradeOutlinedIcon />}
         </IconButton>
       </CardActions>
-    </Card>
+    </MuiCard>
   );
 }
