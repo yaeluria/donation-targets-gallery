@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const DONATION_TARGETS = gql`
-  query getTargets($page: Int = 1) {
-    getDonationTargets(page: $page) {
+  query getTargets($page: Int = 1, $orderBy: DonationTargetsOrder) {
+    getDonationTargets(page: $page, orderBy: $orderBy ) {
       donationTargets {
         id
         name
