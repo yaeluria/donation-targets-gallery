@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Gallery from "./Gallery";
 import { useQuery } from "@apollo/client";
-import { DONATION_TARGETS } from "../queries";
+import { DONATION_TARGETS } from "../graphql/queries";
 import Box from "@material-ui/core/Box";
 import { Waypoint } from "react-waypoint";
 import CircularProgress from "@material-ui/core/CircularProgress";
