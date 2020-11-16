@@ -42,7 +42,7 @@ export default function CardContent(props) {
   return (
     <MuiCardContent className={classes.content}>
       <Typography gutterBottom variant="h6" component="h2">
-        {id} :{previewString(name, MAX_CHAR_NAME)}
+        {previewString(name, MAX_CHAR_NAME)}
       </Typography>
       <Typography variant="body2" component="p">
         {previewString(descriptionContent, MAX_CHAR_DESC)}
