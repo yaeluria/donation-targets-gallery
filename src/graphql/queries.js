@@ -19,9 +19,7 @@ export const DONATION_TARGETS = gql`
           totalMatchedAmount
         }
       }
-      lastPage
       nextPage
-      totalCount
     }
   }
 `;
