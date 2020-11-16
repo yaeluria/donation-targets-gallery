@@ -1,5 +1,4 @@
 import {useState} from 'react';
-import './App.css';
 import { ApolloProvider } from '@apollo/client';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 import Container from './components/Container';
