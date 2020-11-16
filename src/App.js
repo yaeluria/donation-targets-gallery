@@ -5,6 +5,7 @@ import Container from './components/Container';
 import DataContext from './data-context'
 
 const client = new ApolloClient({
+  // for enabling CORS while testing on localhost
   uri:"https://cors-anywhere.herokuapp.com/http://jgive-deploy-devcors-6rtudh0rg.herokuapp.com/graphql",
   cache: new InMemoryCache({
     typePolicies: {
