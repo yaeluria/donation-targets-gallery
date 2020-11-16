@@ -11,11 +11,14 @@ import DataContext from "../data-context";
 
 export default function Container() {
   const {filter} = useContext(DataContext);
+  
+  const orderBy = filter?.orderBy || "approved_at_DESC"
+    
   const INITIAL_PAGE = 1;
   const { loading, error, data, fetchMore } = useQuery(DONATION_TARGETS, {
     variables: {
       page: INITIAL_PAGE,
-      orderBy: filter?.orderBy || "approved_at_DESC"
+      orderBy: orderBy
     }
   });
 
@@ -34,7 +37,7 @@ export default function Container() {
                   fetchMore({
                     variables: {
                       page: nextPage,
-                      orderBy: filter?.orderBy || "approved_at_DESC",
+                      orderBy: orderBy
                     },
                     updateQuery: (_previousResult, { fetchMoreResult }) =>
                       fetchMoreResult,
